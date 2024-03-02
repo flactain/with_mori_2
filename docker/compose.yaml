@@ -1,0 +1,26 @@
+services:
+  app:
+    ports:
+      - "8888:8080"
+#    volumes:
+#      - type: bind
+#        source: ../target #/test0219.war
+#        target: /usr/local/tomcat/webapps
+
+    build: 
+      context: ../
+      dockerfile: docker/app/Dockerfile
+      
+  db:
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=sample
+      - TZ=Asia/Tokyo
+    ports: 
+      - "3306:3306"
+    volumes:
+      - type: bind
+        source: ./db/init
+        target: /docker-entrypoint-initdb.d
+    image: mysql:8.2.0
+     
