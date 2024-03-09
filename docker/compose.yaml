@@ -13,7 +13,7 @@ services:
       
   db:
     environment:
-      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=rootroot
       - MYSQL_DATABASE=sample
       - TZ=Asia/Tokyo
     ports: 
@@ -22,5 +22,5 @@ services:
       - type: bind
         source: ./db/init
         target: /docker-entrypoint-initdb.d
-    image: mysql:8.2.0
+    image: mysql:8.0.36
      
